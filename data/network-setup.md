@@ -44,4 +44,30 @@ Laptop:
     IP Address: 168.90.0.4
 
 
-                       
+DHCP Details:
+    configure terminal
+    ip dhcp pool Switch1
+    network 168.90.0.0 255.255.0.0
+    default-router 168.90.0.1
+    exit
+
+    configure terminal
+    ip dhcp pool Switch2
+    network 210.3.14.0 255.255.255.0
+    default-router 210.3.14.1
+    exit
+
+    configure terminal
+    ip dhcp excluded-address 168.90.0.1
+    ip dhcp excluded-address 210.3.14.1
+    exit
+
+    configure terminal
+    interface GigabitEthernet0/0
+    ip address 168.90.0.1 255.255.0.0
+    no shutdown
+
+    interface GigabitEthernet0/1
+    ip address 210.3.14.1 255.255.255.0
+    no shutdown
+    exit                     
